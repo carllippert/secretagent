@@ -45,7 +45,7 @@
     "postinstall": "yarn nvmrc",
     "predev": "yarn nvmrc",
     "tauri": "tauri",
-    "start": "vite",
+    "start": "yarn build_py_carl && vite",
     "rls": "dotenv-load tauri build",
     "build": "vite build",
     "preview": "vite preview",
@@ -53,7 +53,9 @@
     "preinstall": "yarn global add sloc @tauri-apps/cli",
     "sloc": "sloc src src-tauri/src",
     "update": "concurrently \"yarn upgrade \" \"cd src-tauri && cargo update && cargo clean\"",
-    "test": "mocha"
+    "test": "mocha",
+    "build_py": "pyinstaller -F py/test.py --distpath src-tauri/bin/python --clean -n test-x86_64-pc-windows-msvc",
+    "build_py_carl": "pyinstaller -F py/test.py --distpath src-tauri/bin/python --clean -n test-x86_64-apple-darwin"
   },
   "eslintConfig": {
     "extends": [
@@ -74,7 +76,7 @@
     ]
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^1.0",
+    "@tauri-apps/cli": "^1.3",
     "@vitejs/plugin-legacy": "^4.0.2",
     "@vitejs/plugin-react": "^3.1.0",
     "chai": "^4.3.7",

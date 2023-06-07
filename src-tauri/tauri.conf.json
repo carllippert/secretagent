@@ -1,6 +1,6 @@
 {
   "package": {
-    "productName": "Product Name",
+    "productName": "Secret Agent",
     "version": "../package.json"
   },
   "build": {
@@ -29,7 +29,7 @@
         "icons/icon.ico"
       ],
       "resources": [],
-      "externalBin": [],
+      "externalBin": ["bin/python/test"],
       "category": "DeveloperTool",
       "shortDescription": "",
       "longDescription": "",
@@ -52,9 +52,7 @@
     "updater": {
       "active": false,
       "dialog": false,
-      "endpoints": [
-        "https://youtu.be/ZXjlZBisYPQ"
-      ],
+      "endpoints": ["https://youtu.be/ZXjlZBisYPQ"],
       "pubkey": ""
     },
     "allowlist": {
@@ -117,8 +115,13 @@
         "all": false,
         "execute": false,
         "open": ".*",
-        "scope": [],
-        "sidecar": false
+        "sidecar": true,
+        "scope": [
+          {
+            "name": "bin/python/test",
+            "sidecar": true
+          }
+        ]
       },
       "window": {
         "all": false,
@@ -154,7 +157,7 @@
     },
     "windows": [
       {
-        "title": "tauri.conf.json > tauri > windows > title",
+        "title": "Secret Agent",
         "label": "main",
         "minWidth": 1000,
         "minHeight": 600,
