@@ -1,6 +1,6 @@
 {
   "package": {
-    "productName": "Secret Agent",
+    "productName": "SecretAgent",
     "version": "../package.json"
   },
   "build": {
@@ -71,17 +71,17 @@
         "save": false
       },
       "fs": {
-        "all": false,
-        "copyFile": false,
+        "all": true,
+        "copyFile": true,
         "createDir": true,
-        "exists": false,
+        "exists": true,
         "readDir": true,
-        "readFile": false,
-        "removeDir": false,
-        "removeFile": false,
-        "renameFile": false,
-        "scope": ["$APP/*", "$DOCUMENT/*", "$DOWNLOAD/*"],
-        "writeFile": true
+        "readFile": true,
+        "removeDir": true,
+        "removeFile": true,
+        "renameFile": true,
+        "writeFile": true,
+        "scope": ["$APP/*", "$DOWNLOAD/*", "$DOCUMENT/**/*"]
       },
       "globalShortcut": {
         "all": false
