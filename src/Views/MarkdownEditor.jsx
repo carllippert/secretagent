@@ -11,8 +11,6 @@ import {
   useStorage,
 } from "../utils";
 
-// Reads the `$APPDATA/users` directory recursively
-
 export default function App() {
   const { fileSep, loading, documents, downloads, appDocuments } =
     useTauriContext();
@@ -48,11 +46,11 @@ export default function App() {
   useEffect(() => {
     getDir();
   }, []);
-
   return (
-    <div className="container">
-      <MDEditor value={value} onChange={setValue} />
-      <MDEditor.Markdown source={value} style={{ whiteSpace: "pre-wrap" }} />
+    <div className="bg-pink-200 text-white">
+      derp
+      {/* <MDEditor value={value} onChange={setValue} />
+      <MDEditor.Markdown source={value} style={{ whiteSpace: "pre-wrap" }} /> */}
     </div>
   );
 }

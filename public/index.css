@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   /* show eye pleasing background color instead of white */
   background-color: #141517;
@@ -5,14 +9,14 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 /* fallback scrollbar is inspired by Firefox's dark scrollbar */
 
 ::-webkit-scrollbar {
-  width: 15px
+  width: 15px;
 }
 
 ::-webkit-scrollbar-track {
@@ -20,9 +24,9 @@ code {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #505050
+  background: #505050;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: grey
+  background: grey;
 }

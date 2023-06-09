@@ -87,11 +87,17 @@ export default function () {
     //     { component: React.memo(About), path: '/about', name: t('About') },
     // Suspense example when a component was lazy loaded
     //     { component: () => <React.Suspense fallback={<Fallback />}><Setting /></React.Suspense>, path: '/settings', name: t('Settings') },
-    { component: ExampleView, path: "/example-view", name: t("ExampleView") },
+    {
+      component: ExampleView,
+      path: "/example-view",
+      name: t("ExampleView"),
+      icon: "E",
+    },
     {
       component: MarkdownEditor,
       path: "/markdown-editor",
       name: t("MarkdownEditor"),
+      icon: "M",
     },
   ];
 
@@ -176,35 +182,35 @@ export default function () {
     return () => (mountID.current = null);
   }, []);
 
-  function LanguageHeaders() {
-    const languages = Object.keys(i18n.options.resources);
-    let nextLangIdx = 0;
+  // function LanguageHeaders() {
+  //   const languages = Object.keys(i18n.options.resources);
+  //   let nextLangIdx = 0;
 
-    function cycleLang() {
-      if (nextLangIdx == languages.length) nextLangIdx = 0;
-      i18n.changeLanguage(languages[nextLangIdx]);
-    }
+  //   function cycleLang() {
+  //     if (nextLangIdx == languages.length) nextLangIdx = 0;
+  //     i18n.changeLanguage(languages[nextLangIdx]);
+  //   }
 
-    const header = languages.map((supportedLang, index) => {
-      const selectedLang = lang === supportedLang;
-      if (selectedLang) nextLangIdx = index + 1;
-      return (
-        <Fragment key={index}>
-          {/* language code is a link if not the current language */}
-          {selectedLang ? (
-            <Text>{supportedLang.toUpperCase()}</Text>
-          ) : (
-            <Anchor onClick={() => i18n.changeLanguage(supportedLang)}>
-              {supportedLang.toUpperCase()}
-            </Anchor>
-          )}
-          <Text>{index < languages.length - 1 && "|"}</Text>
-        </Fragment>
-      );
-    });
-    useHotkeys([["mod+Shift+L", cycleLang]]);
-    return header;
-  }
+  //   const header = languages.map((supportedLang, index) => {
+  //     const selectedLang = lang === supportedLang;
+  //     if (selectedLang) nextLangIdx = index + 1;
+  //     return (
+  //       <Fragment key={index}>
+  //         {/* language code is a link if not the current language */}
+  //         {selectedLang ? (
+  //           <Text>{supportedLang.toUpperCase()}</Text>
+  //         ) : (
+  //           <Anchor onClick={() => i18n.changeLanguage(supportedLang)}>
+  //             {supportedLang.toUpperCase()}
+  //           </Anchor>
+  //         )}
+  //         <Text>{index < languages.length - 1 && "|"}</Text>
+  //       </Fragment>
+  //     );
+  //   });
+  //   useHotkeys([["mod+Shift+L", cycleLang]]);
+  //   return header;
+  // }
 
   function NavLinks() {
     // TODO: useHotkeys and abstract this
@@ -223,7 +229,7 @@ export default function () {
       >
         {/* TODO: Icons */}
         <Group>
-          <Text>{view.name ? view.name : view.name}</Text>
+          <Text>{view.icon ? view.icon : view.icon}</Text>
         </Group>
       </NavLink>
     ));
@@ -259,13 +265,14 @@ export default function () {
         className={classes.simpleBar}
       >
         <AppShell
-          padding="md"
+          // style={{ padding: 0, margin: 0 }}
+          // padding="md"
           navbarOffsetBreakpoint="sm"
           navbar={
             <Navbar
               className={using_custom_titlebar ? classes.titlebarMargin : ""}
               height="100%"
-              width={{ sm: 200 }}
+              width={{ sm: 60 }}
               p="xs"
               hidden={!mobileNavOpened}
               hiddenBreakpoint="sm"
@@ -300,7 +307,7 @@ export default function () {
               </MediaQuery>
               <Text>{HEADER_TITLE}</Text>
               <Group className={classes.headerRightItems}>
-                <LanguageHeaders />
+                {/* <LanguageHeaders /> */}
                 <ActionIcon
                   id="toggle-theme"
                   title="Ctrl + J"
@@ -319,18 +326,18 @@ export default function () {
               </Group>
             </Header>
           }
-          aside={
-            <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-              <Aside
-                className={using_custom_titlebar ? classes.titlebarMargin : ""}
-                p="md"
-                hiddenBreakpoint="sm"
-                width={{ sm: 200, lg: 300 }}
-              >
-                <Text>Right Side. Use for help or support menu?</Text>
-              </Aside>
-            </MediaQuery>
-          }
+          // aside={
+          //   <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+          //     <Aside
+          //       className={using_custom_titlebar ? classes.titlebarMargin : ""}
+          //       p="md"
+          //       hiddenBreakpoint="sm"
+          //       width={{ sm: 200, lg: 300 }}
+          //     >
+          //       <Text>Right Side. Use for help or support menu?</Text>
+          //     </Aside>
+          //   </MediaQuery>
+          // }
           footer={
             showFooter && (
               <Footer height={"fit-content"} p="xs" className={classes.footer}>
@@ -426,6 +433,11 @@ const getAppStyles = createStyles((theme) => ({
   },
   appShell: {
     main: {
+      // margin: 0,
+      paddingTop: 70,
+      padddingRight: 20,
+      paddingLeft: 60,
+      // backgroundColor: "orange",
       backgroundColor:
         theme.colorScheme === "dark"
           ? theme.colors.dark[8]
